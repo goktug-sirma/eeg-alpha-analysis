@@ -55,6 +55,13 @@ Bu, EEG araştırmalarının temel doğrulamalarından biridir ve pipeline’ım
 
 ![Alpha Comparison](results/alpha_compare.png)
 
+| Kanal | Eyes Open (α power) | Eyes Closed (α power) | Ratio (Closed/Open) |
+|-------|----------------------|------------------------|----------------------|
+| O1..  | 2.10e-10             | 3.65e-09               | 17.37x              |
+| O2..  | 1.92e-10             | 3.37e-09               | 17.57x              |
+| Oz..  | 1.87e-10             | 2.89e-09               | 15.39x              |
+| Pz..  | 1.58e-10             | 1.12e-09               | 7.10x               |
+| Cz..  | 1.33e-10             | 6.11e-10               | 4.59x               |
 
 ## 📚 Öğrenme Notlarım
 - Preprocessing neden önemli?
