@@ -7,7 +7,7 @@ The first target: observe alpha band (8–12 Hz) differences in occipital channe
 ✔️ Achieved: alpha power increased more than 15× with eyes closed — exactly as reported in EEG literature 🚀
 ```
 ---
-```
+
 ## 🎯 Objectives
 ```
 - Learning-oriented: build an EEG preprocessing pipeline from scratch.
@@ -29,8 +29,8 @@ EEG_Project/
 │   └── alpha_compare.png
 ├── main.py                     # basic pipeline (single channel demo)
 └── compare_alpha_multi.py      # multi-channel eyes-open vs eyes-closed
-
 ```
+
 
 ## 🖥️ Installation
 ```bash
@@ -46,14 +46,15 @@ pip install -r requirements.txt
 ```
 1. Run the basic pipeline:
 ```
+
 ```bash
 python main.py
 ```
 
 Loads raw EEG, applies filters, and generates time/frequency plots.
-```
+
 2. Compare alpha power (multi-channel):
-```
+
 ```bash
 python compare_alpha_multi.py
 ```
@@ -113,3 +114,8 @@ pip install -r requirements.txt
 - Niedermeyer’s Electroencephalography: Basic Principles, Clinical Applications, and Related Fields
 - MNE-Python Documentation
 ```
+---
+
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

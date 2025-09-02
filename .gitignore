@@ -8,5 +8,3 @@ __pycache__/
 # EEG data (yerelde tutulacak)
 data/*.edf
 
-# Sonuç dosyaları (opsiyonel)
-results/*.png
