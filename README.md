@@ -1,61 +1,71 @@
-# EEG Preprocessing & Alpha Band Analysis
+## 🧠 EEG Preprocessing & Alpha Band Analysis
+```
+This repository is part of my journey to learn and explore EEG (Electroencephalography) signal processing.
+The goal was to build a simple yet effective pipeline to clean, visualize, and analyze raw EEG data.
 
-Bu repo, EEG (Electroencephalography) sinyalleriyle çalışmayı öğrenme yolculuğumun bir parçası.  
-Amacım, ham EEG verilerini açıp anlamlı hale getirmek, onları temizlemek, görselleştirmek ve küçük deneylerle beyin dalgalarının doğasını keşfetmek.  
-
-İlk hedefim: **göz açık vs. göz kapalı** durumunda oksipital kanallarda **alpha bandı (8–12 Hz)** farkını gözlemlemekti.  
-Ve bu hedef gerçekleşti → göz kapalı durumda alpha gücünün kat kat arttığını bu pipeline sayesinde gördüm 🚀  
-
+The first target: observe alpha band (8–12 Hz) differences in occipital channels (O1, O2, Oz) under eyes-open vs. eyes-closed conditions.
+✔️ Achieved: alpha power increased more than 15× with eyes closed — exactly as reported in EEG literature 🚀
+```
+---
+```
+## 🎯 Objectives
+```
+- Learning-oriented: build an EEG preprocessing pipeline from scratch.
+- Simple but powerful: include bandpass, notch filter, PSD, and band power computation.
+- Scientific validation: replicate the classical finding (eyes closed → alpha increase).
+```
 ---
 
-## 🎯 Projenin Amacı
-- **Öğrenme odaklı**: Sıfırdan EEG işleme pipeline’ı kurmak.  
-- **Basit ama güçlü**: Bandpass, notch filtre, PSD, band power gibi temel taşları anlamak.  
-- **Bilimsel doğrulama**: Literatürdeki en klasik bulguyu (göz kapalı → alpha artışı) kodla yeniden üretmek.  
-
----
-
-## 📂 Proje Yapısı
+## 📂 Project Structure
 ```
 EEG_Project/
 │
-├── data/                       # .edf dosyaları (örnek: PhysioNet EEGMMI)
-├── src/                        # modüller
-│ ├── preprocessing.py          # filtreler (bandpass, notch)
-│ ├── visualization.py          # zaman & frekans çizimleri
-│ └── features.py               # band power hesaplama
-├── results/                    # kaydedilen görseller
-│ └── alpha_compare.png
-├── main.py                     # temel pipeline (tek kanal demo)
-└── compare_alpha_multi.py      # göz açık-kapalı multi-kanal kıyaslama
+├── data/                       # .edf files (example: PhysioNet EEGMMI)
+├── src/                        # source modules
+│   ├── preprocessing.py        # bandpass & notch filters
+│   ├── visualization.py        # time & frequency plots
+│   └── features.py             # band power calculations
+├── results/                    # saved figures
+│   └── alpha_compare.png
+├── main.py                     # basic pipeline (single channel demo)
+└── compare_alpha_multi.py      # multi-channel eyes-open vs eyes-closed
+
 ```
 
-## 🔧 Kurulum
+## 🖥️ Installation
 ```bash
-git clone https://github.com/<kullanıcı-adın>/EEG_Project.git
+git clone https://github.com/<username>/EEG_Project.git
 cd EEG_Project
+python -m venv .venv
+.venv\Scripts\activate   # (Windows)
 pip install -r requirements.txt
+
 ```
 
-## ▶️ Kullanım
-1. Temel pipeline çalıştırma
+## ▶️ Usage
+```
+1. Run the basic pipeline:
+```
 ```bash
 python main.py
 ```
-Ham veriyi okur, filtreler ve zaman/frekans grafikleri üretir.
 
-2. Alpha bandı karşılaştırma (multi-kanal)
+Loads raw EEG, applies filters, and generates time/frequency plots.
+```
+2. Compare alpha power (multi-channel):
+```
 ```bash
 python compare_alpha_multi.py
 ```
 
-## 📊 Örnek Sonuç
-Oksipital kanallarda (O1.., O2.., Oz..), göz kapalı durumda alpha gücü göz açığa göre 15–17 kat arttı.
-Bu, EEG araştırmalarının temel doğrulamalarından biridir ve pipeline’ımın çalıştığını gösteriyor.
-
+## 📊 Example Result
+```
+In occipital channels (O1, O2, Oz), alpha power increased 15–17× in eyes-closed condition compared to eyes-open.
+This reproduces one of the most classical findings in EEG research.
+```
 ![Alpha Comparison](results/alpha_compare.png)
 
-| Kanal | Eyes Open (α power) | Eyes Closed (α power) | Ratio (Closed/Open) |
+| Channel | Eyes Open (α power) | Eyes Closed (α power) | Ratio (Closed/Open) |
 |-------|----------------------|------------------------|----------------------|
 | O1..  | 2.10e-10             | 3.65e-09               | 17.37x              |
 | O2..  | 1.92e-10             | 3.37e-09               | 17.57x              |
@@ -63,36 +73,43 @@ Bu, EEG araştırmalarının temel doğrulamalarından biridir ve pipeline’ım
 | Pz..  | 1.58e-10             | 1.12e-09               | 7.10x               |
 | Cz..  | 1.33e-10             | 6.11e-10               | 4.59x               |
 
-## 📚 Öğrenme Notlarım
-- Preprocessing neden önemli?
-Ham EEG’de elektrik paraziti, göz kırpma artefaktları ve düşük frekans kaymaları çok fazla.
-Bandpass ve notch filtre uygulamadan doğru analiz yapmak mümkün değil.
+## 📚 Insights
+```
+- Why preprocessing matters?
+Raw EEG contains lots of noise (electrical interference, eye blinks, drifts).
+Applying bandpass and notch filters is essential for meaningful analysis.
 
-- Zaman vs. frekans
-Zaman domeninde EEG dalgaları karmaşık görünüyor.
-Ama PSD grafiğine geçince frekans bantlarının gücü çok daha anlaşılır hale geliyor.
+- Time vs. frequency domain
+EEG looks chaotic in time domain, but PSD reveals clear frequency band structure.
 
-- Alpha farkı deneyimlemek
-Kendi pipeline’ımla göz açık/kapalı alpha farkını görmek inanılmaz motive edici oldu.
-Bu, literatürde okuduğum şeyin kendi kodumda yeniden üretimi.
+- Alpha band validation
+Observing the eyes-open/closed alpha difference with my own pipeline was a strong motivation boost.
+```
 
-## 📦 Bağımlılıklar
-- Python 3.9+ önerilir  
-- NumPy  
-- SciPy  
-- Matplotlib  
-- MNE  
+## 📦 Dependencies
+```
+- Python 3.9+ recommended
+- NumPy
+- SciPy
+- Matplotlib
+- MNE 
+```
 
-Kurulum:
+Install:
 ```bash
 pip install -r requirements.txt
 ```
 
-## ✨ Gelecek Çalışmalar
-- Artefakt tespiti (örneğin göz kırpma → frontal kanallarda büyük spike’lar)
-- Çoklu kanal topomap (beyin yüzeyinde renkli aktivite haritası)
-- ML tabanlı basit sınıflandırıcı (örneğin motor imagery denemeleri)
+## ✨ Roadmap
+```
+- Implement artifact detection (e.g. eye blinks in frontal channels)
+- Multi-channel topomap (visualize brain activity spatially)
+- Simple ML-based classifier (e.g. motor imagery)
+```
 
-## 📚 Kaynak
+## 📚 References
+```
 - PhysioNet EEG Motor Movement/Imagery Dataset
-
+- Niedermeyer’s Electroencephalography: Basic Principles, Clinical Applications, and Related Fields
+- MNE-Python Documentation
+```
