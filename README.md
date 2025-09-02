@@ -43,9 +43,8 @@ pip install -r requirements.txt
 ```
 
 ## ▶️ Usage
-```
+
 1. Run the basic pipeline:
-```
 
 ```bash
 python main.py
@@ -118,4 +117,6 @@ pip install -r requirements.txt
 
 
 ## 📄 License
+```
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
