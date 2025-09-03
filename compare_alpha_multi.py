@@ -10,21 +10,20 @@ def load_and_process(filepath, channel):
     fs = int(raw.info["sfreq"])
     signal = raw.get_data(picks=[channel]).ravel()
     
-    # Preprocessing
     filtered = bandpass_filter(signal, lowcut=1, highcut=40, fs=fs)
     cleaned = auto_notch_filter(filtered, fs)
     
     return cleaned, fs
 
 if __name__ == "__main__":
-    # Dosya yolları
-    file_open = "data/S001R01.edf"   # göz açık
-    file_closed = "data/S001R02.edf" # göz kapalı
+    
+    file_open = "data/S001R01.edf"   
+    file_closed = "data/S001R02.edf" 
 
-    # Kıyaslanacak kanallar
+ 
     channels = ["O1..", "O2..", "Oz..", "Pz..", "Cz.."]
 
-    # results klasörünü oluştur (yoksa)
+    
     results_dir = Path("results")
     results_dir.mkdir(exist_ok=True)
 
@@ -52,9 +51,7 @@ if __name__ == "__main__":
         else:
             print("  Ratio  -> Not defined (open alpha = 0)\n")
 
-    # ------------------------------
-    # Görselleştirme (Bar Chart)
-    # ------------------------------
+ 
     x = range(len(channels))
     width = 0.35
 
@@ -68,9 +65,9 @@ if __name__ == "__main__":
     plt.legend()
     plt.tight_layout()
 
-    # Grafiği results klasörüne kaydet
+   
     out_path = results_dir / "alpha_compare.png"
     plt.savefig(out_path)
     plt.show()
 
-    print(f"\nGrafik kaydedildi: {out_path.resolve()}")
+    print(f"\nGraph saved: {out_path.resolve()}")

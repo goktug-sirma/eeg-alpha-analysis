@@ -14,17 +14,14 @@ def bandpass_filter(data, lowcut, highcut, fs, order=5):
     return y
 
 def auto_notch_filter(data, fs, quality=30):
-    # Spektrum analizi yap
     freqs, psd = welch(data, fs)
     peak_freq = freqs[np.argmax(psd)]
     
-    # Hangi frekans şüpheli?
     if 49 <= peak_freq <= 51:
         return notch_filter(data, 50, fs, quality)
     elif 59 <= peak_freq <= 61:
         return notch_filter(data, 60, fs, quality)
     else:
-        # Parazit yoksa hiç filtreleme yapma
         return data
 
 def notch_filter(data, freq, fs, quality=30):
