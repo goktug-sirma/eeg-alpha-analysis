@@ -1,10 +1,5 @@
-# Python cache
 __pycache__/
 *.pyc
-
-# VSCode ayarları
 .vscode/
-
-# EEG data (yerelde tutulacak)
 data/*.edf
 
