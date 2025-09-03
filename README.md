@@ -1,4 +1,10 @@
 ## 🧠 EEG Preprocessing & Alpha Band Analysis
+
+![Python](https://img.shields.io/badge/Python-3.11-blue.svg) 
+![License](https://img.shields.io/badge/License-MIT-green.svg) 
+![Status](https://img.shields.io/badge/Status-Work_in_Progress-orange.svg) 
+![Focus](https://img.shields.io/badge/Focus-Alpha%20Band%20EEG-lightblue)
+
 ```
 This repository is part of my journey to learn and explore EEG (Electroencephalography) signal processing.
 The goal was to build a simple yet effective pipeline to clean, visualize, and analyze raw EEG data.
